@@ -1,4 +1,4 @@
-# 消息服务 用户
+# 消息服务 模版
 
 ## MACOS开发环境
 ```
@@ -18,3 +18,10 @@
 ## 依赖模块
 <!-- - [user](https://github.com/lecex/user) -->
 ## message 消息服务
+- Send     发送消息
+## template 模版设置
+- List      模版列表
+- Get       查询模版
+- Create    创建模版
+- Update    更新模版
+- Delete    删除模版
