@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package templates;
+
+service Templates {
+    // 获取权限列表
+    rpc List(Request) returns (Response) {}
+    // 根据 唯一 获取模板
+    rpc Get(Request) returns (Response) {}
+    // 创建模板
+    rpc Create(Request) returns (Response) {}
+    // 更新模板
+    rpc Update(Request) returns (Response) {}
+    // 删除模板
+    rpc Delete(Request) returns (Response) {}
+}
+
+message Template{
+    int64 id = 1;
+    string event = 2;               // 事件 注册信息 登录信息
+    string name = 3;                // 事件名称 方法 比如发短信 发邮件
+    string type= 4;                 // 默认实现事件的类型 sms email wechat ...
+    string templateCode = 5;        // 模板代码 用于一些不能是使用自制模板的服务商
+    string templateValue = 6;       // 模板
+}
+
+message ListQuery{
+    int64 limit=1;      //返回数量
+    int64 page=2;       //页面
+    string sort=3;      // 排序
+    string where = 4;       // 查询条件
+}
+
+message Request{
+    ListQuery list_query = 1;           // 列表分页请求
+    Template template = 2;
+}
+
+message Response {
+    bool valid = 1;
+    int64 total = 2;
+    Template template = 3;
+    repeated Template templates = 4;
+}
