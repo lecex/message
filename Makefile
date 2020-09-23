@@ -14,7 +14,8 @@ micro:
 proto:
 	protoc -I . --micro_out=. --gogofaster_out=. proto/message/message.proto
 	protoc -I . --micro_out=. --gogofaster_out=. proto/template/template.proto
-
+	protoc -I . --micro_out=. --gogofaster_out=. proto/drive/drive.proto
+	
 .PHONY: docker
 docker:
 	docker build -f Dockerfile  -t message .

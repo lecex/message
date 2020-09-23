@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package drive;
+
+service Drives {
+    // 全部驱动设置
+    rpc All(Request) returns (Response) {}
+    // 获取驱动设置列表
+    rpc List(Request) returns (Response) {}
+    // 根据 唯一 获取驱动设置
+    rpc Get(Request) returns (Response) {}
+    // 创建驱动设置
+    rpc Create(Request) returns (Response) {}
+    // 更新驱动设置
+    rpc Update(Request) returns (Response) {}
+    // 删除驱动设置
+    rpc Delete(Request) returns (Response) {}
+}
+
+message Drive{
+    int64 id = 1;
+    string name = 2;                        // 驱动名称 阿里云
+    string lable = 3;                       // 驱动标示 aliyun
+    string type= 4;                         // 驱动类型 sms
+    map<string, string> queryParams = 5;    // 配置参数
+    string default = 6;                     // 是否是默认
+}
+
+message ListQuery{
+    int64 limit=1;      //返回数量
+    int64 page=2;       //页面
+    string sort=3;      // 排序
+    string where = 4;       // 查询条件
+}
+
+message Request{
+    ListQuery list_query = 1;           // 列表分页请求
+    Drive drive = 2;
+}
+
+message Response {
+    bool valid = 1;
+    int64 total = 2;
+    Drive drive = 3;
+    repeated Drive drives = 4;
+}

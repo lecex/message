@@ -23,5 +23,5 @@ func Register(Server server.Server) {
 		log.Log(err)
 	}
 	messagePB.RegisterMessagesHandler(Server, &Message{repo, sms}) // 用户服务实现
-	templatePB.RegisterMessagesHandler(Server, &Template{repo})    // 用户服务实现
+	templatePB.RegisterTemplateHandler(Server, &Template{repo})    // 用户服务实现
 }

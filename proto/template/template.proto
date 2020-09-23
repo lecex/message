@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package templates;
+package template;
 
 service Templates {
     // 获取权限列表
