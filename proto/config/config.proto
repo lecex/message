@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package config;
+
+service Configs {
+    // 根据 唯一 获取配置设置
+    rpc Get(Request) returns (Response) {}
+    // 更新配置设置
+    rpc Update(Request) returns (Response) {}
+}
+
+message Request{
+    Config config = 1;
+}
+
+message Response {
+    Config config = 1;
+}
+
+message Config{
+    Sms sms = 1;               // 短信配置
+    Email email = 2;
+    Wechat wechat = 3;
+}
+
+message Sms{
+    string drive = 1;           // 默认驱动
+    Aliyun aliyun = 2;          // 阿里云配置
+    Cloopen cloopen = 3;        // 容联云配置
+}
+
+message Aliyun{
+    string accessKeyID = 1;                     // 
+    string accessKeySecret = 2;                 // 
+    string signName= 3;                         // 
+}
+
+
+message Cloopen{
+    string appID = 1;                     // 
+    string accountSid = 2;               // 
+    string accountToken= 3;               // 
+}
+
+message Email{
+    Smtp smtp = 1;
+}
+
+message Smtp{
+    string host = 1;
+    string port = 2;              // 
+    string user= 3;               // 
+    string password = 4;          // 
+}
+
+message Wechat{
+    string drive = 1;           // 模版消息[template]默认｜会员卡[card]
+    string appid = 2;
+    string secret = 3; 
+}
