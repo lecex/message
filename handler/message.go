@@ -4,14 +4,15 @@ import (
 	"context"
 	"strings"
 
-	"github.com/lecex/message/service"
+	pb "github.com/lecex/message/proto/config"
 	"github.com/lecex/message/service/repository"
+	"github.com/lecex/message/service/sms"
 )
 
 // Message 消息服务
 type Message struct {
 	Repo repository.Template
-	Sms  service.Sms
+	Sms  sms.Sms
 }
 
 // Send 发送

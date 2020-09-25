@@ -5,7 +5,7 @@ import (
 
 	"fmt"
 
-	"github.com/lecex/tools/env"
+	"github.com/lecex/core/env"
 
 	pb "github.com/lecex/message/proto/message"
 	tpd "github.com/lecex/message/proto/template"
