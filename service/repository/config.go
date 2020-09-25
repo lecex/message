@@ -31,9 +31,6 @@ func (repo *ConfigRepository) Get(config *pb.Config) (*pb.Config, error) {
 // Create 创建模版
 // bug 无模版名创建模版可能引起 bug
 func (repo *ConfigRepository) Create(config *pb.Config) (*pb.Config, error) {
-	if exist := repo.Exist(config); exist == true {
-		return config, fmt.Errorf("注册模版已存在")
-	}
 	err := repo.DB.Create(config).Error
 	if err != nil {
 		// 写入数据库未知失败记录
@@ -45,13 +42,7 @@ func (repo *ConfigRepository) Create(config *pb.Config) (*pb.Config, error) {
 
 // Update 更新模版
 func (repo *ConfigRepository) Update(config *pb.Config) (bool, error) {
-	if config.Id == "" {
-		return false, fmt.Errorf("请传入更新id")
-	}
-	id := &pb.Config{
-		Id: config.Id,
-	}
-	err := repo.DB.Model(id).Updates(config).Error
+	err := repo.DB.Updates(config).Error
 	if err != nil {
 		log.Log(err)
 		return false, err

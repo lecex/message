@@ -2,14 +2,14 @@ package handler
 
 import (
 	server "github.com/micro/go-micro/v2/server"
+	"github.com/micro/go-micro/v2/util/log"
 
-	db "github.com/lecex/message/providers/database"
-
-	"github.com/lecex/message/service/repository"
-	"github.com/lecex/message/service/sms"
-
+	"github.com/lecex/core/env"
 	messagePB "github.com/lecex/message/proto/message"
 	templatePB "github.com/lecex/message/proto/template"
+	db "github.com/lecex/message/providers/database"
+	"github.com/lecex/message/service/repository"
+	"github.com/lecex/message/service/sms"
 )
 
 // Register 注册
@@ -22,6 +22,7 @@ func Register(Server server.Server) {
 	if err != nil {
 		log.Log(err)
 	}
-	messagePB.RegisterMessagesHandler(Server, &Message{repo, sms}) // 用户服务实现
-	templatePB.RegisterTemplateHandler(Server, &Template{repo})    // 用户服务实现
+	messagePB.RegisterMessageHandler(Server, &Message{repo, sms}) // 用户服务实现
+	templatePB.RegisterTemplatesHandler(Server, &Template{repo})  // 用户服务实现
+	templatePB.RegisterConfigsHandler(Server, &Config{repo})      // 用户服务实现
 }

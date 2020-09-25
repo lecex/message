@@ -66,9 +66,6 @@ func (repo *TemplateRepository) Get(template *pb.Template) (*pb.Template, error)
 // Create 创建模版
 // bug 无模版名创建模版可能引起 bug
 func (repo *TemplateRepository) Create(template *pb.Template) (*pb.Template, error) {
-	if exist := repo.Exist(template); exist == true {
-		return template, fmt.Errorf("注册模版已存在")
-	}
 	err := repo.DB.Create(template).Error
 	if err != nil {
 		// 写入数据库未知失败记录
@@ -80,7 +77,7 @@ func (repo *TemplateRepository) Create(template *pb.Template) (*pb.Template, err
 
 // Update 更新模版
 func (repo *TemplateRepository) Update(template *pb.Template) (bool, error) {
-	if template.Id == "" {
+	if template.Id == 0 {
 		return false, fmt.Errorf("请传入更新id")
 	}
 	id := &pb.Template{

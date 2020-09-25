@@ -15,6 +15,7 @@ message Request{
 
 message Response {
     Config config = 1;
+    bool valid = 2;
 }
 
 message Config{
