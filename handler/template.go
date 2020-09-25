@@ -15,8 +15,8 @@ type Template struct {
 
 // List 获取所有消息事件模板
 func (srv *Template) List(ctx context.Context, req *pb.Request, res *pb.Response) (err error) {
-	templates, err := srv.Repo.List(req)
-	total, err := srv.Repo.Total(req)
+	templates, err := srv.Repo.List(req.ListQuery)
+	total, err := srv.Repo.Total(req.ListQuery)
 	if err != nil {
 		return err
 	}
@@ -27,7 +27,7 @@ func (srv *Template) List(ctx context.Context, req *pb.Request, res *pb.Response
 
 // Get 获取消息事件模板
 func (srv *Template) Get(ctx context.Context, req *pb.Request, res *pb.Response) (err error) {
-	nat, err := srv.Repo.Get(req)
+	nat, err := srv.Repo.Get(req.Template)
 	if err != nil {
 		return err
 	}
@@ -37,7 +37,7 @@ func (srv *Template) Get(ctx context.Context, req *pb.Request, res *pb.Response)
 
 // Create 创建消息事件模板
 func (srv *Template) Create(ctx context.Context, req *pb.Request, res *pb.Response) (err error) {
-	_, err = srv.Repo.Create(req)
+	_, err = srv.Repo.Create(req.Template)
 	if err != nil {
 		res.Valid = false
 		return fmt.Errorf("添加消息事件模板失败")
@@ -48,7 +48,7 @@ func (srv *Template) Create(ctx context.Context, req *pb.Request, res *pb.Respon
 
 // Update 更新消息事件模板
 func (srv *Template) Update(ctx context.Context, req *pb.Request, res *pb.Response) (err error) {
-	valid, err := srv.Repo.Update(req)
+	valid, err := srv.Repo.Update(req.Template)
 	if err != nil {
 		res.Valid = false
 		return fmt.Errorf("更新消息事件模板失败")
@@ -59,7 +59,7 @@ func (srv *Template) Update(ctx context.Context, req *pb.Request, res *pb.Respon
 
 // Delete 删除消息事件模板
 func (srv *Template) Delete(ctx context.Context, req *pb.Request, res *pb.Response) (err error) {
-	valid, err := srv.Repo.Delete(req)
+	valid, err := srv.Repo.Delete(req.Template)
 	if err != nil {
 		res.Valid = false
 		return fmt.Errorf("删除消息事件模板失败")

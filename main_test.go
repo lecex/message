@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestMessageConfig(t *testing.T) {
 	fmt.Println("a")

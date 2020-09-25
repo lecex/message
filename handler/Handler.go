@@ -5,6 +5,7 @@ import (
 	"github.com/micro/go-micro/v2/util/log"
 
 	"github.com/lecex/core/env"
+	configPB "github.com/lecex/message/proto/config"
 	messagePB "github.com/lecex/message/proto/message"
 	templatePB "github.com/lecex/message/proto/template"
 	db "github.com/lecex/message/providers/database"
@@ -22,7 +23,8 @@ func Register(Server server.Server) {
 	if err != nil {
 		log.Log(err)
 	}
-	messagePB.RegisterMessageHandler(Server, &Message{repo, sms}) // 用户服务实现
-	templatePB.RegisterTemplatesHandler(Server, &Template{repo})  // 用户服务实现
-	templatePB.RegisterConfigsHandler(Server, &Config{repo})      // 用户服务实现
+
+	configPB.RegisterConfigsHandler(Server, &Config{&repository.ConfigRepository{db.DB}}) //
+	messagePB.RegisterMessageHandler(Server, &Message{repo, sms})                         //
+	templatePB.RegisterTemplatesHandler(Server, &Template{repo})                          //
 }
