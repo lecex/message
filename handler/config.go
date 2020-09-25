@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	pb "github.com/lecex/message/proto/drive"
+	pb "github.com/lecex/message/proto/config"
 	"github.com/lecex/message/service/repository"
 )
 
