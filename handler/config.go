@@ -15,7 +15,7 @@ type Config struct {
 
 // Get 获取消息事件模板
 func (srv *Config) Get(ctx context.Context, req *pb.Request, res *pb.Response) (err error) {
-	nat, err := srv.Repo.Get(req.Config)
+	nat, err := srv.Repo.Get()
 	if err != nil {
 		return err
 	}
@@ -28,7 +28,7 @@ func (srv *Config) Update(ctx context.Context, req *pb.Request, res *pb.Response
 	valid, err := srv.Repo.Update(req.Config)
 	if err != nil {
 		res.Valid = false
-		return fmt.Errorf("更新消息事件模板失败")
+		return fmt.Errorf("更新message配置失败")
 	}
 	res.Valid = valid
 	return err

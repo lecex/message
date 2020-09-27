@@ -1,18 +1,34 @@
 package migrations
 
 import (
-	pd "github.com/lecex/message/proto/template"
+	cpd "github.com/lecex/message/proto/config"
+	tpd "github.com/lecex/message/proto/template"
 	db "github.com/lecex/message/providers/database"
 )
 
 func init() {
+	config()
 	template()
 	seeds()
 }
 
+// config 配置数据迁移
+func config() {
+	config := &cpd.Config{}
+	if !db.DB.HasTable(&config) {
+		db.DB.Exec(`
+			CREATE TABLE configs (
+			name varchar(32) NOT NULL COMMENT '配置名称',
+			value json DEFAULT NULL COMMENT '配置内容',
+			PRIMARY KEY (name)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		`)
+	}
+}
+
 // template 模板数据迁移
 func template() {
-	template := &pd.Template{}
+	template := &tpd.Template{}
 	if !db.DB.HasTable(&template) {
 		db.DB.Exec(`
 			CREATE TABLE templates (
