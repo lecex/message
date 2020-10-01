@@ -27,9 +27,9 @@ func TestMessageConfigUpdate(t *testing.T) {
 			Sms: &conPB.Sms{
 				Drive: "cloopen",
 				Cloopen: &conPB.Cloopen{
-					AppID:        "",
-					AccountSid:   "",
-					AccountToken: "",
+					AppID:        "8a48b551506fd26f01509405471a6db8",
+					AccountSid:   "aaf98f895069246a01506a9770ea0268",
+					AccountToken: "3fd8b18597d346c48631821abc00b138",
 				},
 			},
 		},
@@ -46,10 +46,14 @@ func TestMessageSend(t *testing.T) {
 		Addressee: "13954386521",
 		Event:     "register_verify",
 		Type:      "sms",
-		QueryParams: map[string]string{
-			"code": "654321",
-			"time": "5",
-		},
+		QueryParams: `
+			{
+				"datas":[
+					"654321",
+					"5"
+				]
+			}
+		`,
 	}
 	res := &mesPB.Response{}
 	h := handler.Message{repo}

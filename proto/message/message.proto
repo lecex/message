@@ -14,8 +14,8 @@ message Request {
     string event = 2;
     // 留空调用模板默认设置 默认实现事件的类型 sms,email,wechat ...
     string type= 3;
-    // 消息参数 验证码 等魔板参数参数
-    map<string, string> queryParams = 4;
+    // 消息参数 验证码 等魔板参数参数 json
+    string queryParams = 4;
 }
 
 message Response {
