@@ -54,10 +54,15 @@ github.com/beevik/ntp v0.2.0/go.mod h1:hIHWr+l3+/clUnF44zdK+CWW7fO8dR5cIylAQ76NR
 github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973/go.mod h1:Dwedo/Wpr24TaqPxmxbtue+5NUziq4I4S80YR8gNf3Q=
 github.com/beorn7/perks v1.0.0/go.mod h1:KWe93zE9D1o94FZ5RNwFwVgaQK1VOXiVxmqh+CedLV8=
 github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
+github.com/bigrocs/alipay v1.0.5 h1:tx8tGhSn+cOKTrZxGhum6y8REZcNJCiGgTMv/qASx18=
+github.com/bigrocs/alipay v1.0.5/go.mod h1:w1kYCMJjXA2MqF2l/bVBphcGY4DD8ZDLHPuD8IfmUwQ=
 github.com/bigrocs/cloopen v0.0.0-20191023072719-e2c5dafba442 h1:SYo+RxgQB7aFlAqJG38HEsLAZLANAtYGzMrj/2Y/D5Y=
 github.com/bigrocs/cloopen v0.0.0-20191023072719-e2c5dafba442/go.mod h1:DQs50dmfkuvyFf74iuKkG24wURvUfNjtBjUTXgRhNP4=
+github.com/bigrocs/wechat v1.0.8/go.mod h1:x3RC61QP799yHh+KpccRtCu488w5LvxGx9pz2rrQY58=
 github.com/bigrocs/wechat v1.0.10 h1:MtObBAd/XKEk+RA860gyBg/dNUTYDtc5Vxbw2HnXweU=
 github.com/bigrocs/wechat v1.0.10/go.mod h1:x3RC61QP799yHh+KpccRtCu488w5LvxGx9pz2rrQY58=
+github.com/bigrocs/wechat v1.0.11 h1:4vygwSlYPvXxHpxtaya+RhYRvmUtPKbnXN/MKAndkkg=
+github.com/bigrocs/wechat v1.0.11/go.mod h1:x3RC61QP799yHh+KpccRtCu488w5LvxGx9pz2rrQY58=
 github.com/bitly/go-simplejson v0.5.0 h1:6IH+V8/tVMab511d5bn4M7EwGXZf9Hj6i2xSwkNEM+Y=
 github.com/bitly/go-simplejson v0.5.0/go.mod h1:cXHtHw4XUPsvGaxgjIAn8PhEWG9NfngEKAMDJEczWVA=
 github.com/blang/semver v3.1.0+incompatible/go.mod h1:kRBLl5iJ+tD4TcOOxsy/0fnwebNt5EWlYSAyrTnjyyk=
@@ -220,6 +225,7 @@ github.com/hashicorp/golang-lru v0.5.3/go.mod h1:iADmTwqILo4mZ8BN3D2Q6+9jd8WM5uG
 github.com/hashicorp/hcl v1.0.0 h1:0Anlzjpi4vEasTeNFn2mLJgTSwt0+6sfsiTG8qcWGx4=
 github.com/hashicorp/hcl v1.0.0/go.mod h1:E5yfLk+7swimpb2L/Alb/PJmXilQ/rhwaUYs4T20WEQ=
 github.com/hpcloud/tail v1.0.0/go.mod h1:ab1qPbhIpdTxEkNHXyeSf5vhxWSCs/tWer42PpOxQnU=
+github.com/iGoogle-ink/gopay v1.5.8/go.mod h1:/A7M5Ts6OUEaQD+88stwhPtFV1AxOCL+CAtjreZlGGQ=
 github.com/iij/doapi v0.0.0-20190504054126-0bbf12d6d7df/go.mod h1:QMZY7/J/KSQEhKWFeDesPjMj+wCHReeknARU3wqlyN4=
 github.com/ijc/Gotty v0.0.0-20170406111628-a8b993ba6abd/go.mod h1:3LVOLeyx9XVvwPgrt2be44XgSqndprz1G18rSk8KD84=
 github.com/imdario/mergo v0.3.8 h1:CGgOkSJeqMRmt0D9XLWExdT4m4F1vd3FV3VPt+0VxkQ=

@@ -2,6 +2,8 @@ package wechat
 
 import (
 	"github.com/bigrocs/wechat"
+	"github.com/bigrocs/wechat/requests"
+	"github.com/clbanning/mxj"
 	pb "github.com/lecex/message/proto/message"
 )
 
@@ -14,7 +16,7 @@ type Wechat struct {
 // NewClient 创建新的连接
 func (srv *Wechat) NewClient() (client *wechat.Client) {
 	client = wechat.NewClient()
-	c := srv.Client.Config
+	c := client.Config
 	c.AppId = srv.AppId
 	c.Secret = srv.Secret
 	c.AccessToken = srv.AccessToken
