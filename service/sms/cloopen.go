@@ -34,8 +34,8 @@ func (srv *Cloopen) Send(req *pb.Request, t *tpd.Template) (valid bool, err erro
 		queryParams.TemplateCode = t.TemplateCode
 	}
 	request := &sdk.Request{
-		Mobile:       req.Addressee,
-		TemplateCode: t.TemplateCode,
+		Mobile:       queryParams.Mobile,
+		TemplateCode: queryParams.TemplateCode,
 		Datas:        queryParams.Datas,
 	}
 	valid, err = client.Send(request)

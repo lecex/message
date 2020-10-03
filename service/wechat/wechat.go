@@ -11,6 +11,14 @@ type Wechat struct {
 	AccessToken string
 }
 
+type QueryParams struct {
+	Mobile       string
+	TemplateCode string
+	Url          string
+	Miniprogram  string `json:"miniprogram"`
+	Data         string `json:"data"`
+}
+
 // NewClient 创建新的连接
 func (srv *Wechat) NewClient() (client *wechat.Client) {
 	client = wechat.NewClient()
@@ -21,36 +29,24 @@ func (srv *Wechat) NewClient() (client *wechat.Client) {
 	return client
 }
 
-func (srv *Wechat) Template(req *pb.Request) (err error) {
+func (srv *Wechat) Template(req *pb.Request, t *tpd.Template) (err error) {
+	queryParams := QueryParams{}
+	err = json.Unmarshal([]byte(req.QueryParams), &queryParams)
+	if req.Addressee != "" {
+		queryParams.Mobile = req.Addressee
+	}
+	if t.TemplateCode != "" {
+		queryParams.TemplateCode = t.TemplateCode
+	}
 	request := requests.NewCommonRequest()
 	request.Domain = "offiaccount"
 	request.ApiName = "message.template"
 	request.QueryParams = map[string]interface{}{
-		"touser":      req.Addressee,
-		"template_id": "ybgOF-ZQsWTr8JS0lGwuRzFPdBKGAsiJiIk5ZX0EaDY",
-		"url":         req.QueryParams["url"],
-		"data": map[string]interface{}{
-			"first": map[string]interface{}{
-				"value": req.QueryParams["data.first"],
-				"color": "#173177",
-			},
-			"keyword1": map[string]interface{}{
-				"value": req.QueryParams["data.keyword1"],
-				"color": "#173177",
-			},
-			"keyword2": map[string]interface{}{
-				"value": req.QueryParams["data.keyword2"],
-				"color": "#173177",
-			},
-			"keyword3": map[string]interface{}{
-				"value": req.QueryParams["data.keyword3"],
-				"color": "#173177",
-			},
-			"remark": map[string]interface{}{
-				"value": req.QueryParams["data.remark"],
-				"color": "#173177",
-			},
-		},
+		"touser":      queryParams.Addressee,
+		"template_id": queryParams.TemplateCode,
+		"url":         queryParams.Url,
+		"miniprogram": queryParams.Miniprogram,
+		"data":        queryParams.Data,
 	}
 	return srv.request(request)
 }

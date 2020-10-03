@@ -48,6 +48,17 @@ func (srv *Message) Send(ctx context.Context, req *pb.Request, res *pb.Response)
 			log.Log(err)
 		}
 	}
+	if srv.inSliceString(Type, "wechat") {
+		wechat, err := srv.wechat()
+		if err != nil {
+			log.Log(err)
+			return err
+		}
+		valid, err = wechat.Send(req, templates)
+		if err != nil {
+			log.Log(err)
+		}
+	}
 	res.Valid = valid
 	return
 }
@@ -65,6 +76,32 @@ func (srv *Message) inSliceString(array []string, val string) bool {
 
 // sms 构建 sms 短信服务结构
 func (srv *Message) sms() (h sms.Sms, err error) {
+	con, err := srv.getConfig()
+	if err != nil {
+		return h, err
+	}
+	switch con.Sms.Drive {
+	case "aliyun":
+		h = &sms.Aliyun{
+			RegionID:        "default",
+			AccessKeyID:     con.Sms.Aliyun.AccessKeyID,
+			AccessKeySecret: con.Sms.Aliyun.AccessKeySecret,
+			SignName:        con.Sms.Aliyun.SignName,
+		}
+	case "cloopen":
+		h = &sms.Cloopen{
+			AppID:        con.Sms.Cloopen.AppID,
+			AccountSid:   con.Sms.Cloopen.AccountSid,
+			AccountToken: con.Sms.Cloopen.AccountToken,
+		}
+	default:
+		return nil, fmt.Errorf("未找 %s SMS 驱动", con.Sms.Drive)
+	}
+	return h, err
+}
+
+// wechat 构建 wechat 模板消息
+func (srv *Message) wechat() (h sms.Sms, err error) {
 	con, err := srv.getConfig()
 	if err != nil {
 		return h, err

@@ -55,9 +55,8 @@ message Smtp{
 }
 
 message Wechat{
-    string type = 1;            // 发送类型 模版消息[template]默认｜会员卡[card]
-    string appid = 2;
-    string secret = 3;
-    string accessToken = 4;     // 微信凭据
-    string validityTime = 5;    // token 有效时间
+    string appid = 1;
+    string secret = 2;
+    string accessToken = 3;     // 微信凭据
+    string validityTime = 4;    // token 有效时间
 }
