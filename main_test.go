@@ -33,8 +33,9 @@ func TestMessageConfigUpdate(t *testing.T) {
 				},
 			},
 			Wechat: &conPB.Wechat{
-				AppId:        "8a48b551506fd26f01509405471a6db8",
-				Secret:   "aaf98f895069246a01506a9770ea0268",
+				Appid:  "8a48b551506fd26f01509405471a6db8",
+				Secret: "aaf98f895069246a01506a9770ea0268",
+			},
 		},
 	}
 	res := &conPB.Response{}
@@ -49,6 +50,27 @@ func TestMessageSend(t *testing.T) {
 		Addressee: "13954386521",
 		Event:     "register_verify",
 		Type:      "wechat",
+		QueryParams: `
+			{
+				"datas":[
+					"654321",
+					"5"
+				]
+			}
+		`,
+	}
+	res := &mesPB.Response{}
+	h := handler.Message{repo}
+	err := h.Send(context.TODO(), req, res)
+	t.Log(req, res, err)
+}
+
+func TestSmsMessageSend(t *testing.T) {
+	repo := &repository.TemplateRepository{db.DB}
+	req := &mesPB.Request{
+		Addressee: "13954386521",
+		Event:     "register_verify",
+		Type:      "sms",
 		QueryParams: `
 			{
 				"datas":[
