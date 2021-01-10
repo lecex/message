@@ -83,5 +83,6 @@ func TestSmsMessageSend(t *testing.T) {
 	res := &mesPB.Response{}
 	h := handler.Message{repo}
 	err := h.Send(context.TODO(), req, res)
+	fmt.Println(req, res, err)
 	t.Log(req, res, err)
 }
