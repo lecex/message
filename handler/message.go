@@ -13,6 +13,7 @@ import (
 	db "github.com/lecex/message/providers/database"
 	"github.com/lecex/message/service/repository"
 	"github.com/lecex/message/service/sms"
+	"github.com/lecex/message/service/wechat"
 )
 
 // Message 消息服务
@@ -22,7 +23,6 @@ type Message struct {
 
 // Send 发送
 func (srv *Message) Send(ctx context.Context, req *pb.Request, res *pb.Response) (err error) {
-
 	// 查找对应模板信息
 	templates, err := srv.Repo.Get(&tpd.Template{
 		Event: req.Event,
@@ -54,7 +54,7 @@ func (srv *Message) Send(ctx context.Context, req *pb.Request, res *pb.Response)
 			log.Log(err)
 			return err
 		}
-		valid, err = wechat.Send(req, templates)
+		valid, err = wechat.Template(req, templates)
 		if err != nil {
 			log.Log(err)
 		}
@@ -101,27 +101,15 @@ func (srv *Message) sms() (h sms.Sms, err error) {
 }
 
 // wechat 构建 wechat 模板消息
-func (srv *Message) wechat() (h sms.Sms, err error) {
+func (srv *Message) wechat() (h *wechat.Wechat, err error) {
 	con, err := srv.getConfig()
 	if err != nil {
 		return h, err
 	}
-	switch con.Sms.Drive {
-	case "aliyun":
-		h = &sms.Aliyun{
-			RegionID:        "default",
-			AccessKeyID:     con.Sms.Aliyun.AccessKeyID,
-			AccessKeySecret: con.Sms.Aliyun.AccessKeySecret,
-			SignName:        con.Sms.Aliyun.SignName,
-		}
-	case "cloopen":
-		h = &sms.Cloopen{
-			AppID:        con.Sms.Cloopen.AppID,
-			AccountSid:   con.Sms.Cloopen.AccountSid,
-			AccountToken: con.Sms.Cloopen.AccountToken,
-		}
-	default:
-		return nil, fmt.Errorf("未找 %s SMS 驱动", con.Sms.Drive)
+	h = &wechat.Wechat{
+		AppId:       con.Wechat.Appid,
+		Secret:      con.Wechat.Secret,
+		AccessToken: con.Wechat.AccessToken,
 	}
 	return h, err
 }

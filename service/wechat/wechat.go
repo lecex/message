@@ -1,10 +1,14 @@
 package wechat
 
 import (
+	"encoding/json"
+	"fmt"
+
 	"github.com/bigrocs/wechat"
 	"github.com/bigrocs/wechat/requests"
-	"github.com/clbanning/mxj"
+	"github.com/go-log/log"
 	pb "github.com/lecex/message/proto/message"
+	tpd "github.com/lecex/message/proto/template"
 )
 
 type Wechat struct {
@@ -14,9 +18,9 @@ type Wechat struct {
 }
 
 type QueryParams struct {
-	Mobile       string
-	TemplateCode string
-	Url          string
+	Addressee    string `json:"addressee"`
+	TemplateCode string `json:"template_code"`
+	Url          string `json:"url"`
 	Miniprogram  string `json:"miniprogram"`
 	Data         string `json:"data"`
 }
@@ -31,11 +35,11 @@ func (srv *Wechat) NewClient() (client *wechat.Client) {
 	return client
 }
 
-func (srv *Wechat) Template(req *pb.Request, t *tpd.Template) (err error) {
+func (srv *Wechat) Template(req *pb.Request, t *tpd.Template) (valid bool, err error) {
 	queryParams := QueryParams{}
 	err = json.Unmarshal([]byte(req.QueryParams), &queryParams)
 	if req.Addressee != "" {
-		queryParams.Mobile = req.Addressee
+		queryParams.Addressee = req.Addressee
 	}
 	if t.TemplateCode != "" {
 		queryParams.TemplateCode = t.TemplateCode
@@ -50,18 +54,23 @@ func (srv *Wechat) Template(req *pb.Request, t *tpd.Template) (err error) {
 		"miniprogram": queryParams.Miniprogram,
 		"data":        queryParams.Data,
 	}
-	return srv.request(request)
+	valid, err = srv.request(request)
+	if err != nil {
+		log.Log(err)
+	}
+	return valid, err
 }
-func (srv *Wechat) request(request *requests.CommonRequest) (req mxj.Map, err error) {
+func (srv *Wechat) request(request *requests.CommonRequest) (valid bool, err error) {
 	client := srv.NewClient()
 	// 请求
 	response, err := client.ProcessCommonRequest(request)
 	if err != nil {
-		return req, err
+		return false, err
 	}
-	req, err = response.GetHttpContentMap()
+	req, err := response.GetHttpContentMap()
+	fmt.Println(req) //debug
 	if err != nil {
-		return req, err
+		return false, err
 	}
-	return req, err
+	return true, err
 }

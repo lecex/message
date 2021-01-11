@@ -8,6 +8,7 @@ require (
 	github.com/bigrocs/cloopen v0.0.0-20191023072719-e2c5dafba442
 	github.com/bigrocs/wechat v1.0.11
 	github.com/clbanning/mxj v1.8.4
+	github.com/go-log/log v0.2.0
 	github.com/gogo/protobuf v1.3.1
 	github.com/golang/protobuf v1.4.0
 	github.com/gomsa/socialite v0.0.0-20190708020854-201020becbc4 // indirect

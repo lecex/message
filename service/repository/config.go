@@ -2,7 +2,6 @@ package repository
 
 import (
 	"encoding/json"
-	"fmt"
 
 	// 公共引入
 
@@ -51,7 +50,6 @@ func (repo *ConfigRepository) Update(config *pb.Config) (bool, error) {
 		Value: string(c),
 	}
 	err = repo.DB.Model(&con).Updates(&con).Error
-	fmt.Println(err)
 	if err != nil {
 		log.Log(err)
 		return false, err

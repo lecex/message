@@ -54,4 +54,7 @@ func seeds() {
 	db.DB.Exec(`
 		INSERT INTO templates ( event, name, type, template_code, template_value ) VALUES ('register_verify','用户注册验证码','sms','453946','')
 	`)
+	db.DB.Exec(`
+		INSERT INTO configs ( name ) VALUES ('config')
+	`)
 }
