@@ -46,6 +46,7 @@ func (srv *Message) Send(ctx context.Context, req *pb.Request, res *pb.Response)
 		valid, err = sms.Send(req, templates)
 		if err != nil {
 			log.Log(err)
+			return err
 		}
 	}
 	if srv.inSliceString(Type, "wechat") {
@@ -57,6 +58,7 @@ func (srv *Message) Send(ctx context.Context, req *pb.Request, res *pb.Response)
 		valid, err = wechat.Template(req, templates)
 		if err != nil {
 			log.Log(err)
+			return err
 		}
 	}
 	res.Valid = valid
