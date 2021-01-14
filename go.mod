@@ -11,12 +11,10 @@ require (
 	github.com/go-log/log v0.2.0
 	github.com/gogo/protobuf v1.3.1
 	github.com/golang/protobuf v1.4.0
-	github.com/gomsa/socialite v0.0.0-20190708020854-201020becbc4 // indirect
 	github.com/jinzhu/gorm v1.9.12
 	github.com/lecex/core v1.0.38
-	github.com/lecex/pay v1.2.12 // indirect
+	github.com/lecex/message-api v0.0.0-20210114015942-ddbe6102a671 // indirect
 	github.com/lecex/socialite v1.0.36
-	github.com/lecex/socialite-api v0.0.0-20201229133325-59bed7d71b73 // indirect
 	github.com/micro/go-micro v1.18.0
 	github.com/micro/go-micro/v2 v2.3.0
 )
