@@ -6,9 +6,9 @@ import (
 
 	"github.com/bigrocs/wechat"
 	"github.com/bigrocs/wechat/requests"
-	"github.com/go-log/log"
 	pb "github.com/lecex/message/proto/message"
 	tpd "github.com/lecex/message/proto/template"
+	"github.com/micro/go-micro/v2/util/log"
 )
 
 type Wechat struct {
