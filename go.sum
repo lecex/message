@@ -290,6 +290,7 @@ github.com/lecex/core v1.0.41 h1:NRW5IHJD6KydunaspXs/u5dnjCAYypoBF3NVNHNbHD0=
 github.com/lecex/core v1.0.41/go.mod h1:0997q8CCNlkeJur/hjyVSY2EXgYd4TznkvcFP2f+VTE=
 github.com/lecex/core v1.1.1 h1:Zshz0vyAEEisNbOq0WlSiMUXn5iDP09+KNc+LDm6EvA=
 github.com/lecex/core v1.1.1/go.mod h1:0997q8CCNlkeJur/hjyVSY2EXgYd4TznkvcFP2f+VTE=
+github.com/lecex/core v1.1.2/go.mod h1:0997q8CCNlkeJur/hjyVSY2EXgYd4TznkvcFP2f+VTE=
 github.com/lecex/message-api v0.0.0-20210121011230-8822249614e1 h1:vwTXPGHXVhpWvwd2ChwTUvOt+Je7s4+YcpKBJCQ7jT4=
 github.com/lecex/message-api v0.0.0-20210121011230-8822249614e1/go.mod h1:znmRsyaJdIE3Gc77uZMZXLCuMaFaD8cv1VXOI0fBERY=
 github.com/lecex/message-api v0.0.0-20210217071103-16127a9b6320 h1:vxkegdT9LCDkz/jGhtBTWQO00yLLR2E3sRpYKqv6WO4=
