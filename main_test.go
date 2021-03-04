@@ -48,7 +48,7 @@ func TestMessageSend(t *testing.T) {
 	repo := &repository.TemplateRepository{db.DB}
 	req := &mesPB.Request{
 		Addressee: "13954386521",
-		Event:     "register_verify",
+		Event:     "sms_captcha",
 		Type:      "wechat",
 		QueryParams: `
 			{
@@ -69,7 +69,7 @@ func TestSmsMessageSend(t *testing.T) {
 	repo := &repository.TemplateRepository{db.DB}
 	req := &mesPB.Request{
 		Addressee: "13954386521",
-		Event:     "register_verify",
+		Event:     "sms_captcha",
 		Type:      "sms",
 		QueryParams: `
 			{
