@@ -27,14 +27,14 @@ func TestMessageConfigUpdate(t *testing.T) {
 			Sms: &conPB.Sms{
 				Drive: "cloopen",
 				Cloopen: &conPB.Cloopen{
-					AppID:        "8a48b551506fd26f01509405471a6db8",
-					AccountSid:   "aaf98f895069246a01506a9770ea0268",
-					AccountToken: "3fd8b18597d346c48631821abc00b138",
+					AppID:        "",
+					AccountSid:   "",
+					AccountToken: "",
 				},
 			},
 			Wechat: &conPB.Wechat{
-				Appid:  "8a48b551506fd26f01509405471a6db8",
-				Secret: "aaf98f895069246a01506a9770ea0268",
+				Appid:  "",
+				Secret: "",
 			},
 		},
 	}
