@@ -2,6 +2,7 @@ package main
 
 import (
 	// 公共引入
+
 	"github.com/micro/go-micro/v2"
 	"github.com/micro/go-micro/v2/util/log"
 
@@ -24,5 +25,6 @@ func main() {
 	if err := service.Run(); err != nil {
 		log.Fatal(err)
 	}
+
 	log.Log("serviser run ...")
 }

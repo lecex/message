@@ -6,7 +6,7 @@ import (
 	"github.com/micro/go-micro/v2/util/log"
 
 	"github.com/jinzhu/gorm"
-	"github.com/lecex/core/uitl"
+	"github.com/lecex/core/util"
 	pb "github.com/lecex/message/proto/template"
 )
 
@@ -28,8 +28,8 @@ type TemplateRepository struct {
 // List 获取所有模版信息
 func (repo *TemplateRepository) List(req *pb.ListQuery) (templates []*pb.Template, err error) {
 	db := repo.DB
-	limit, offset := uitl.Page(req.Limit, req.Page) // 分页
-	sort := uitl.Sort(req.Sort)                     // 排序 默认 created_at desc
+	limit, offset := util.Page(req.Limit, req.Page) // 分页
+	sort := util.Sort(req.Sort)                     // 排序 默认 created_at desc
 	if req.Where != "" {
 		db = db.Where(req.Where)
 	}
