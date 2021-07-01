@@ -80,10 +80,7 @@ func (repo *TemplateRepository) Update(template *pb.Template) (bool, error) {
 	if template.Id == 0 {
 		return false, fmt.Errorf("请传入更新id")
 	}
-	id := &pb.Template{
-		Id: template.Id,
-	}
-	err := repo.DB.Model(id).Updates(template).Error
+	err := repo.DB.Where("id = ?", template.Id).Updates(template).Error
 	if err != nil {
 		log.Log(err)
 		return false, err
@@ -93,10 +90,10 @@ func (repo *TemplateRepository) Update(template *pb.Template) (bool, error) {
 
 // Delete 删除模版
 func (repo *TemplateRepository) Delete(template *pb.Template) (bool, error) {
-	id := &pb.Template{
-		Id: template.Id,
+	if template.Id == "" {
+		return false, fmt.Errorf("请传入更新id")
 	}
-	err := repo.DB.Delete(id).Error
+	err := repo.DB.Where("id = ?", template.Id).Delete(template).Error
 	if err != nil {
 		log.Log(err)
 		return false, err
