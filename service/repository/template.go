@@ -90,7 +90,7 @@ func (repo *TemplateRepository) Update(template *pb.Template) (bool, error) {
 
 // Delete 删除模版
 func (repo *TemplateRepository) Delete(template *pb.Template) (bool, error) {
-	if template.Id == "" {
+	if template.Id == 0 {
 		return false, fmt.Errorf("请传入更新id")
 	}
 	err := repo.DB.Where("id = ?", template.Id).Delete(template).Error
